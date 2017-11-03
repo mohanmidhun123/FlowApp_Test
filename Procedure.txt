@@ -1,0 +1,43 @@
+Given below is the procedure demonstrating the automated testing on Android devices
+
+Procedure to run tests on Emulated devices:
+
+1. Open the code "FlowDriveAppTest_Emulated_RealDevices.py" through an editor  (I used Pycharm for GUI and other options). You can also directly run from CMD prompt.
+2. Open Android Studio and fire up a virtual android device through AVD Manager(I used LG Nexus - 6.0)
+3. Download the .apk file from "https://s3-eu-west-1.amazonaws.com/flowdrive.floowapp.io/apps/21/8b3d8e298a.apk" and place it in a directory of your convenience.
+4. Start Appium server with IP set as 127.0.0.1
+5. Check desired_caps['platformVersion'] and .apk download path is properly set in desired_caps['app']
+6. Run the code
+7. Check results
+
+
+Procedure to run tests on Real Android devices:
+
+1. Open the code "FlowDriveAppTest_Emulated_RealDevices.py" through an editor  (I used Pycharm for GUI and other options). You can also directly run from CMD prompt.
+2. Download the .apk file from "https://s3-eu-west-1.amazonaws.com/flowdrive.floowapp.io/apps/21/8b3d8e298a.apk" and place it in a directory of your convenience.
+3. Start Appium server with IP set as 127.0.0.1
+4. Check desired_caps['platformVersion'] and .apk download path is properly set in desired_caps['app'] as per the Real Android device.
+5. Run the code
+6. Check results
+
+Procedure to run tests on bitbar cloud hosted devices:
+
+1. Open the code "FlowDriveAppTest_HostedDevices.py" through an editor  (I used Pycharm for GUI and other options). You can also directly run from CMD prompt.
+2. Desired Capabilities should be set as following:
+    desired_caps['deviceName'] = 'Android Emulator'
+        desired_caps['platformName'] = 'Android'
+        desired_caps['testdroid_username'] = 'mohan.midhun123@gmail.com'
+        desired_caps['testdroid_password'] = 'Zxcvbnm@123'
+        desired_caps['testdroid_target'] = 'android'
+        desired_caps['testdroid_project'] = 'Android sample project'
+        desired_caps['testdroid_description'] = 'My first project'
+        desired_caps['testdroid_testrun'] = 'Test Run 1'
+        desired_caps['platformVersion'] = '5.0'
+        desired_caps['testdroid_device'] = 'LG Google Nexus 5 D820 5.0 ( trial device )'
+        desired_caps['testdroid_app'] = "https://s3-eu-west-1.amazonaws.com/flowdrive.floowapp.io/apps/21/8b3d8e298a.apk"
+        desired_caps['appPackage'] = 'com.thefloow.flo'
+        desired_caps['appActivity'] = 'com.thefloow.flo.activity.LauncherActivity'
+        self.driver = webdriver.Remote('http://appium.testdroid.com/wd/hub', desired_caps)
+
+5. Run the code
+6. Check results
