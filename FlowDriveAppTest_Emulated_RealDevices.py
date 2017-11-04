@@ -16,13 +16,13 @@ class TheFlowDriveApp(unittest.TestCase):
     def setUp(self):
         desired_caps = {}
         desired_caps['platformName'] = 'Android'
-        desired_caps['platformVersion'] = '5.1'
+        desired_caps['platformVersion'] = '6.0'
         desired_caps['deviceName'] = 'Android Emulator'
         desired_caps['app'] = "D:\\Downloads\\8b3d8e298a.apk"  #Mention the path to the .apk file
         desired_caps['appPackage'] = 'com.thefloow.flo'
         desired_caps['appActivity'] = 'com.thefloow.flo.activity.LauncherActivity'
         self.driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
-        self.delay = lambda :time.sleep(8)
+        self.delay = lambda :time.sleep(10)
         self.BACK = lambda :self.driver.keyevent(4)
         self.textFieldsList = "android.widget.TextView"
         self.editText = "android.widget.EditText"
@@ -56,7 +56,9 @@ class TheFlowDriveApp(unittest.TestCase):
             "home" : "com.thefloow.flo:id/tab_home",
             "welcome" : "com.thefloow.flo:id/btn_welcome_close",
             "start" : "com.thefloow.flo:id/btn_start",
-            "stop" : "com.thefloow.flo:id/btn_stop"
+            "stop" : "com.thefloow.flo:id/btn_stop",
+            "chrono-dur" : "com.thefloow.flo:id/chrono_duration"
+
 
         }
         self.JOURNEYS={
@@ -398,7 +400,7 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("submit")).click()
 
          # Verification
-            self.assertEqual("Please enter the 4 digit recovery code.", self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
+            self.assertEqual("There was an error resetting your password. Please check your e-mail address and recovery code. Codes expire after 24 hours.", self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
 
         except Exception as e:
             raise e
@@ -558,17 +560,18 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
 
           #Verification
             self.delay()
-            self.assertEqual("Registration error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("That e-mail address has been registered already.Please try again.", self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
+
         except Exception as e:
             raise e
 
@@ -601,10 +604,10 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
@@ -644,10 +647,10 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
@@ -738,7 +741,7 @@ class TheFlowDriveApp(unittest.TestCase):
             self.delay()
 
          #verification
-            self.assertEqual("Error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("Registration error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
         except Exception as e:
             raise e
 
@@ -771,10 +774,10 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
@@ -782,7 +785,7 @@ class TheFlowDriveApp(unittest.TestCase):
 
 
          #Verification
-            self.assertEqual("Error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("Registration error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
         except Exception as e:
             raise e
 
@@ -802,7 +805,7 @@ class TheFlowDriveApp(unittest.TestCase):
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("dob")).click()
             self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].clear()
-            self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].send_keys("2009")
+            self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].send_keys("2000")
             self.BACK()
             self.driver.find_element_by_id("android:id/button1").click()
             self.delay()
@@ -966,7 +969,7 @@ class TheFlowDriveApp(unittest.TestCase):
                         continue
             self.delay()
 
-            if int((self.driver.find_element_by_id("com.thefloow.flo:id/chrono_duration").text).split(":")[1])>00:
+            if int((self.driver.find_element_by_id(self.HOME_PAGE.get("chrono-dur")).text).split(":")[1])>00:
                 self.driver.find_element_by_id(self.HOME_PAGE.get("stop")).click()
                 self.delay()
                 self.assertEqual("This journey will not be recorded because it did not meet the minimum distance of 0.5 mile and the minimum speed of 5 mph.",self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
@@ -986,6 +989,9 @@ class TheFlowDriveApp(unittest.TestCase):
                 self.driver.find_element_by_id(self.SOCIAL.get("social-add")).click()
                 self.delay()
                 self.driver.find_element_by_id(self.SOCIAL.get("back-to-friends")).click()
+            else:
+                assert False
+
 
         except Exception as e:
             raise e

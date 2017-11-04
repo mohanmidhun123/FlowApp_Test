@@ -29,7 +29,7 @@ class TheFlowDriveApp(unittest.TestCase):
         desired_caps['appPackage'] = 'com.thefloow.flo'
         desired_caps['appActivity'] = 'com.thefloow.flo.activity.LauncherActivity'
         self.driver = webdriver.Remote('http://appium.testdroid.com/wd/hub', desired_caps)
-        self.delay = lambda: time.sleep(8)
+        self.delay = lambda: time.sleep(10)
         self.BACK = lambda: self.driver.keyevent(4)
         self.textFieldsList = "android.widget.TextView"
         self.editText = "android.widget.EditText"
@@ -63,7 +63,8 @@ class TheFlowDriveApp(unittest.TestCase):
             "home": "com.thefloow.flo:id/tab_home",
             "welcome": "com.thefloow.flo:id/btn_welcome_close",
             "start": "com.thefloow.flo:id/btn_start",
-            "stop": "com.thefloow.flo:id/btn_stop"
+            "stop": "com.thefloow.flo:id/btn_stop",
+            "chrono-dur": "com.thefloow.flo:id/chrono_duration"
 
         }
         self.JOURNEYS = {
@@ -108,7 +109,8 @@ class TheFlowDriveApp(unittest.TestCase):
         # To tear down the session
         self.driver.quit()
 
-    # ************************************* 1. To verify login to app with wrong user credentials *********************************'''
+        # ************************************* 1. To verify login to app with wrong user credentials *********************************'''
+
     def test_1(self):
         try:
             # Agreeing to the agreement
@@ -128,7 +130,7 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 2. To verify login to app with invalid email address *********************************'''
+            # ************************************* 2. To verify login to app with invalid email address *********************************'''
 
     def test_2(self):
         try:
@@ -149,7 +151,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 3. To verify login to app with wrong password *********************************'''
+            # ************************************* 3. To verify login to app with wrong password *********************************'''
+
     def test_3(self):
         try:
             # Agreeing to the agreement
@@ -169,7 +172,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 4. To verify login to app with valid credentials *********************************'''
+            # ************************************* 4. To verify login to app with valid credentials *********************************'''
+
     def test_4(self):
         try:
             # Agreeing to the agreement
@@ -189,7 +193,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 5. To verify If traversing through different App "Tabs" is possible after login *********************************'''
+            # ************************************* 5. To verify If traversing through different App "Tabs" is possible after login *********************************'''
+
     def test_5(self):
         try:
             # Agreeing to the agreement
@@ -239,7 +244,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 6. To verify that Install/Uninstall Android App is Successful *********************************'''
+            # ************************************* 6. To verify that Install/Uninstall Android App is Successful *********************************'''
+
     def test_6(self):
         try:
             self.delay()
@@ -248,7 +254,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 7. To Verify if App is hanging or not by perfoming Random clicks at differrent pages *********************************'''
+            # ************************************* 7. To Verify if App is hanging or not by perfoming Random clicks at differrent pages *********************************'''
+
     def test_7(self):
         try:
             # Agreeing to the agreement
@@ -299,7 +306,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 8. To Check Forgot Password option with email id of wrong format*********************************'''
+            # ************************************* 8. To Check Forgot Password option with email id of wrong format*********************************'''
+
     def test_8(self):
         try:
             # Agreeing to the agreement
@@ -318,7 +326,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 9. To Check Forgot Password option with valid registered email id*********************************'''
+            # ************************************* 9. To Check Forgot Password option with valid registered email id*********************************'''
+
     def test_9(self):
         try:
             # Agreeing to the agreement
@@ -339,7 +348,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 10.Forgot Password Test with email id in correct format but unregistered*********************************'''
+            # ************************************* 10.Forgot Password Test with email id in correct format but unregistered*********************************'''
+
     def test_10(self):
         try:
             # Agreeing to the agreement
@@ -359,7 +369,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 11. Attempting Password reset when you already have a code which is incorrect*********************************'''
+            #  ************************************* 11. Attempting Password reset when you already have a code which is incorrect*********************************'''
+
     def test_11(self):
         try:
             # Agreeing to the agreement
@@ -392,7 +403,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 12. Password reset when you already have a wrong code of long digits*********************************'''
+            # ************************************* 12. Password reset when you already have a wrong code of long digits*********************************'''
+
     def test_12(self):
         try:
             # Agreeing to the agreement
@@ -420,13 +432,15 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("submit")).click()
 
             # Verification
-            self.assertEqual("Please enter the 4 digit recovery code.",
-                             self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
+            self.assertEqual(
+                "There was an error resetting your password. Please check your e-mail address and recovery code. Codes expire after 24 hours.",
+                self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
 
         except Exception as e:
             raise e
 
-    # # ************************************* 13. Password reset with wrong email address format*********************************'''
+            # # ************************************* 13. Password reset with wrong email address format*********************************'''
+
     def test_13(self):
         try:
             # Agreeing to the agreement
@@ -458,7 +472,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 14. Password reset password not meeting the requirement*********************************'''
+            # # ************************************* 14. Password reset password not meeting the requirement*********************************'''
+
     def test_14(self):
         try:
             # Agreeing to the agreement
@@ -489,7 +504,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 15. Password reset password mismatch*********************************'''
+            # # ************************************* 15. Password reset password mismatch*********************************'''
+
     def test_15(self):
         try:
             # Agreeing to the agreement
@@ -520,7 +536,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 16. Password reset correct credentials*********************************'''
+            # # ************************************* 16. Password reset correct credentials*********************************'''
+
     def test_16(self):
         try:
             # Agreeing to the agreement
@@ -553,7 +570,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 17. Create Account Test with already registered email address *********************************'''
+            # ************************************* 17. Create Account Test with already registered email address *********************************'''
+
     def test_17(self):
         try:
             # Agreeing to the agreement
@@ -582,22 +600,24 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
 
             # Verification
             self.delay()
-            self.assertEqual("Registration error",
-                             self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("That e-mail address has been registered already.Please try again.",
+                             self.driver.find_elements_by_class_name(self.textFieldsList)[1].text)
+
         except Exception as e:
             raise e
 
-    # ************************************* 18. Create Account Test with age less than 17 *********************************'''
+            # ************************************* 18. Create Account Test with age less than 17 *********************************'''
+
     def test_18(self):
         try:
             # Agreeing to the agreement
@@ -626,10 +646,10 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
@@ -641,7 +661,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 19. Create Account Test with wrong email format *********************************'''
+            # # ************************************* 19. Create Account Test with wrong email format *********************************'''
+
     def test_19(self):
         try:
             # Agreeing to the agreement
@@ -670,14 +691,13 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()(
-                self.LOGIN_PAGE.get("register")).click()
+            self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
             self.delay()
             # verification
             self.assertEqual("Enter a valid e-mail address.",
@@ -685,7 +705,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 20. Create Account Test and password doesnt meet requirement *********************************'''
+            # # ************************************* 20. Create Account Test and password doesnt meet requirement *********************************'''
+
     def test_20(self):
         try:
             # Agreeing to the agreement
@@ -728,7 +749,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # # ************************************* 21. Create Account Test - Firstname and surname should not take numbers or other characters*********************************'''
+            # # ************************************* 21. Create Account Test - Firstname and surname should not take numbers or other characters*********************************'''
+
     def test_21(self):
         try:
             # Agreeing to the agreement
@@ -767,11 +789,12 @@ class TheFlowDriveApp(unittest.TestCase):
             self.delay()
 
             # verification
-            self.assertEqual("Error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("Registration error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
         except Exception as e:
             raise e
 
-    # # ************************************* 22. Create Account Test - postcode code shouldnt take other characters other than numbers*********************************'''
+            # # ************************************* 22. Create Account Test - postcode code shouldnt take other characters other than numbers*********************************'''
+
     def test_22(self):
         try:
             # Agreeing to the agreement
@@ -800,21 +823,22 @@ class TheFlowDriveApp(unittest.TestCase):
             self.driver.find_elements_by_class_name(self.editText)[5].send_keys("xyz&*()^$$####")
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[6].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[6].send_keys(self.PASS)
             self.delay()
             self.BACK()
-            self.driver.find_elements_by_class_name(self.editText)[7].send_keys("self.PASS")
+            self.driver.find_elements_by_class_name(self.editText)[7].send_keys(self.PASS)
             self.delay()
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("register")).click()
             self.delay()
 
             # Verification
-            self.assertEqual("Error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
+            self.assertEqual("Registration error", self.driver.find_elements_by_class_name(self.textFieldsList)[0].text)
         except Exception as e:
             raise e
 
-    # ************************************* 23. Create Account Test - Success scenario*********************************'''
+            # ************************************* 23. Create Account Test - Success scenario*********************************'''
+
     def test_23(self):
         try:
             # Agreeing to the agreement
@@ -830,7 +854,7 @@ class TheFlowDriveApp(unittest.TestCase):
             self.BACK()
             self.driver.find_element_by_id(self.LOGIN_PAGE.get("dob")).click()
             self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].clear()
-            self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].send_keys("2009")
+            self.driver.find_elements_by_id(self.LOGIN_PAGE.get("dob-select"))[2].send_keys("2000")
             self.BACK()
             self.driver.find_element_by_id("android:id/button1").click()
             self.delay()
@@ -856,7 +880,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 24. Exiting app after successful login attempt *********************************'''
+            # ************************************* 24. Exiting app after successful login attempt *********************************'''
+
     def test_24(self):
         try:
             # Agreeing to the agreement
@@ -882,7 +907,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 25. Check if About Section HELP Tab shows valid information *********************************'''
+            # ************************************* 25. Check if About Section HELP Tab shows valid information *********************************'''
+
     def test_25(self):
         try:
             # Agreeing to the agreement
@@ -910,7 +936,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 26. Successfuly traversing through all HelP Tab sections *********************************'''
+            # ************************************* 26. Successfuly traversing through all HelP Tab sections *********************************'''
+
     def test_26(self):
         try:
             # Agreeing to the agreement
@@ -968,7 +995,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 27. Testing functionality involving Acquiring and locking GPS*********************************'''
+            # ************************************* 27. Testing functionality involving Acquiring and locking GPS*********************************'''
+
     def test_27(self):
         try:
             # Agreeing to the agreement
@@ -1000,7 +1028,7 @@ class TheFlowDriveApp(unittest.TestCase):
                         continue
             self.delay()
 
-            if int((self.driver.find_element_by_id("com.thefloow.flo:id/chrono_duration").text).split(":")[1]) > 00:
+            if int((self.driver.find_element_by_id(self.HOME_PAGE.get("chrono-dur")).text).split(":")[1]) > 00:
                 self.driver.find_element_by_id(self.HOME_PAGE.get("stop")).click()
                 self.delay()
                 self.assertEqual(
@@ -1016,18 +1044,21 @@ class TheFlowDriveApp(unittest.TestCase):
                 self.delay()
                 self.driver.find_element_by_id(self.SOCIAL.get("add-by-email")).click()
                 self.delay()
-                self.driver.find_element_by_id(self.SOCIAL.get("friend-email")).send_keys(
-                    "mohan.midhun123@gmail.com")
+                self.driver.find_element_by_id(self.SOCIAL.get("friend-email")).send_keys("mohan.midhun123@gmail.com")
                 self.BACK()
                 self.delay()
                 self.driver.find_element_by_id(self.SOCIAL.get("social-add")).click()
                 self.delay()
                 self.driver.find_element_by_id(self.SOCIAL.get("back-to-friends")).click()
+            else:
+                assert False
+
 
         except Exception as e:
             raise e
 
-    # ************************************* 28. Test Flow Drive App to check report problem functionality *********************************'''
+            # ************************************* 28. Test Flow Drive App to check report problem functionality *********************************'''
+
     def test_28(self):
         try:
             # Agreeing to the agreement
@@ -1060,7 +1091,8 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-    # ************************************* 29. Test Flow Drive App to check setting preferences options*********************************'''
+            # ************************************* 29. Test Flow Drive App to check setting preferences options*********************************'''
+
     def test_29(self):
         try:
             # Agreeing to the agreement
@@ -1098,6 +1130,6 @@ class TheFlowDriveApp(unittest.TestCase):
         except Exception as e:
             raise e
 
-if __name__ == '__main__':
-    suite = unittest.TestLoader().loadTestsFromTestCase(TheFlowDriveApp)
-    unittest.TextTestRunner(verbosity=2).run(suite)
+    if __name__ == '__main__':
+        suite = unittest.TestLoader().loadTestsFromTestCase(TheFlowDriveApp)
+        unittest.TextTestRunner(verbosity=4).run(suite)
