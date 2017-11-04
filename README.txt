@@ -22,7 +22,6 @@ Please see the excel sheet named "FlowDrive_AndroidAPP_testing_v0.1" for the tes
 
 Bugs and issues:
 There is an issue which I faced with the Cloud device testing using Bitbar testroid platform. 
-This issue seems to be related new version of appium installed at the server side.
 
 Error Obtained: 
 
@@ -30,7 +29,7 @@ Error Obtained:
 2017-11-03 10:36:43:187 - [debug] [MJSONWP] Bad parameters: BadParametersError: Parameters were incorrect. We wanted {"required":["value"]} and you sent ["text","value","id","sessionId"]
 ******************************
 
-I seem have an older version of python-appium client.
+This is related to some compatibilty issues between python-appium client installed on my system and Test-Droid appium server.
 
 Please see the below link below for more details:
 
